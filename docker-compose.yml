@@ -3,20 +3,19 @@ version: '2'
 services:
   ldt:
     container_name: ldt
-    image: tomcat:7-jre8
+    image: local/tomcat:9.0.0.M11
     hostname: ldt.local
     ports:
       - "8080:8080"
     volumes:
-      - ./webapps:/usr/local/tomcat/webapps
-      - ./shared_import:/usr/local/tomcat/temp:z
+        - /c/Users/rpl01081/Documents/Kitematic/virtuoso/data:/usr/local/tomcat/webapps
+        - /c/Users/rpl01081/Documents/Kitematic/share_virtuoso_tomcat:/usr/local/tomcat/temp:z
     networks:
       - ldt
 
   virtuoso:
-    container_name: virtuoso
-    build:
-      context: virtuoso
+    container_name: virtuoso_new
+    image: tenforce/virtuoso
     hostname: virtuoso.local
     ports:
       - "1111:1111"
@@ -25,9 +24,9 @@ services:
       DBA_PASSWORD: "dba"
       SPARQL_UPDATE: "true"
       VIRTUOSO_DBA_PWD: dba
-    volumes:
-      - ./virtuoso_data:/var/lib/virtuoso/db:z
-      - ./shared_import:/var/lib/virtuoso/usr/local/tomcat/temp:z
+  #  volumes:
+  #    - ./virtuoso_data:/var/lib/virtuoso/db:z
+  #    - ./shared_import:/var/lib/virtuoso/usr/local/tomcat/temp:z
     networks:
       - ldt
 

@@ -21,7 +21,9 @@ At the command line execute the following command:
 Start the containers with (the first time, the containers will be build, this can take some time):
 
   docker-compose up
-
+Important: if running docker inside a VM (e.g. when using docker toolbox on Windows), the path in which you 'run' docker-compose should be shared with the VM.
+Beware that the standard VM created by Kinematic only shares the 'c:\users' folder, so if you downloaded the Linked-data-theatre map to a differen folder (e.g.: d:/foo/bar)
+be sure that you share that folder with your VM. (with Kinematic closed, start Virtualbox and edit the VM accordingly)
 Now virtuoso should be running (http://localhost:8890/conductor/) and Tomcat should be running but without LDT yet.
 
 ## Prepare the LDT
